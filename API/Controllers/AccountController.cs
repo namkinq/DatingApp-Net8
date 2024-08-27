@@ -32,7 +32,8 @@ public class AccountController(DataContext context, ITokenService tokenService, 
         return new UserDto{
             Username =user.UserName,
             Token = tokenService.CreateToken(user),
-            KnownAs = user.KnownAs
+            KnownAs = user.KnownAs,
+            Gender = user.Gender
         };
     }
     [HttpPost("login")]
@@ -51,10 +52,12 @@ public class AccountController(DataContext context, ITokenService tokenService, 
             if(computedHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid password");
 
         }
-        return new UserDto{
+        return new UserDto
+        {
             Username = user.UserName,
             KnownAs = user.KnownAs,
             Token = tokenService.CreateToken(user),
+            Gender = user.Gender,
             PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url
         };
     }

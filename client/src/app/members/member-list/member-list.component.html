@@ -16,6 +16,16 @@
                 >
             </div>
             <div class="d-flex mx-2">
+                <label class="col-form-label">Age to:</label>
+                <input 
+                    type="number"
+                    class="form-control ms-1"
+                    style="width: 70px;"
+                    name="maxAge"
+                    [(ngModel)]="memberService.userPrams().maxAge"
+                >
+            </div>
+            <div class="d-flex mx-2">
                 <label class="col-form-label">Show:</label>
                 <select name="gender" style="width: 130px;"
                     class="form-select ms-1"

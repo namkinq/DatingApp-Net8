@@ -67,8 +67,8 @@ export class PhotoEditorComponent implements OnInit{
       url: this.baseUrl + 'users/add-photo',
       authToken: 'Bearer ' + this.accountService.currentUser()?.token,
       isHTML5: true,
-      allowedFileType: ['image'],
-      removeAfterUpload: false,
+      allowedFileType: ['image'],     
+      removeAfterUpload: true,
       autoUpload: false,
       maxFileSize: 10 * 1024 *1024,
     });
@@ -79,7 +79,7 @@ export class PhotoEditorComponent implements OnInit{
     this.uploader.onSuccessItem = (item, response, status, headers) => {
       const photo = JSON.parse(response);
       const updatedMember = {...this.member()};
-      updatedMember.photos.push(photo);
+      updatedMember.photos.push(photo); 
       this.memberChange.emit(updatedMember)
 
       if(photo.isMain){
